@@ -11,6 +11,8 @@ from digikey.client import DigikeyClient
 def search(query: str,
            start: int = 0,
            limit: int = 10,
+           search_filters = None,
+           search_sort = None,
            ) -> models.KeywordSearchResult:
     """
     Search Digikey for a general keyword (and optional filters).
@@ -27,6 +29,8 @@ def search(query: str,
         query,
         start=start,
         limit=limit,
+        search_filters=search_filters,
+        search_sort=search_sort,
     )
     return models.KeywordSearchResult(response)
 

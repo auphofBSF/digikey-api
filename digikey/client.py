@@ -98,6 +98,8 @@ class DigikeyClient(object):
                query: str,  # maps to "keyword" parameter in Digikey API
                start: int = 0,
                limit: int = 10,
+               search_filters = None,
+               search_sort = None,
                ) -> dict:
         """
         Search for parts, using more fields and filter options than 'match'.
@@ -116,8 +118,8 @@ class DigikeyClient(object):
             'search_options': None,
             'record_count': limit,
             'record_start_pos': start,
-            'filters': None,
-            'sort': None,
+            'filters': search_filters,
+            'sort': search_sort,
             'requested_quantity': 1
         }
 

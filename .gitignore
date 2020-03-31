@@ -8,3 +8,12 @@ dist/
 *.sqlite
 .coverage
 *.pyc
+
+# Jupyter Notebooks
+*.ipynb
+
+# Token Cache
+token_cache/
+
+# Scratch
+scratch/

@@ -98,8 +98,9 @@ class DigikeyClient(object):
                query: str,  # maps to "keyword" parameter in Digikey API
                start: int = 0,
                limit: int = 10,
-               search_filters = None,
-               search_sort = None,
+               search_options=None,
+               search_filters=None,
+               search_sort=None,
                ) -> dict:
         """
         Search for parts, using more fields and filter options than 'match'.
@@ -109,13 +110,16 @@ class DigikeyClient(object):
             query (str): free-form keyword query
             start (int): ordinal position of first result
             limit (int): maximum number of results to return
+            search_options: Search Options
+            search_filters: Filters to use in the search
+            search_sort: Sort Settings for the search
         Kwargs:
         Returns:
             dict. See `models.PartsSearchResponse` for exact fields.
         """
         data = {
             'keywords': query,
-            'search_options': None,
+            'search_options': search_options,
             'record_count': limit,
             'record_start_pos': start,
             'filters': search_filters,

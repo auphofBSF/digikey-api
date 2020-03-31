@@ -144,6 +144,19 @@ class Sort(BaseModel):
         return value
 
 
+class SearchOptions(Enum):
+    #  Enum storing possible search_options
+    lead_free = 'LeadFree'
+    collapse_packaging_types = 'CollapsePackagingTypes'
+    exclude_non_stock = 'ExcludeNonStock'
+    has_3d_model = 'Has3DModel'
+    in_stock = 'InStock'
+    manufacturer_part_search = 'ManufacturerPartSearch'
+    new_products_only = 'NewProductsOnly'
+    rohs_compliant = 'RoHSCompliant'
+    has_mentor_footprint = 'HasMentorFootprint'
+
+
 class KeywordSearchRequest(BaseModel):
     """Query format sent to the search endpoint
     https://api-portal.digikey.com/node/8517
@@ -151,7 +164,7 @@ class KeywordSearchRequest(BaseModel):
     # Keywords to search on
     keywords = StringType(required=True)
     # Filters the search results by the included SearchOptions
-    search_options = ListType(StringType)
+    search_options = ListType(StringType(choices=[c.value for c in SearchOptions]))
     # Maximum number of items to return
     record_count = IntType(default=10, min_value=1, max_value=50, required=True)
     # Ordinal position of first returned item

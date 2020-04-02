@@ -134,11 +134,11 @@ class Sort(BaseModel):
 
     # Make sure that a sort parameter id is provided if sorting by parameter.
     def validate_sort_parameter_id(self, data, value):
-        if self.sort_option == SortOptions.sort_by_parameter.value:
-            if self.sort_parameter_id is None:
+        if data['sort_option'] == SortOptions.sort_by_parameter.value:
+            if data['sort_parameter_id'] is None:
                 raise ValidationError('If sorting by parameter a sort parameter must be set')
         else:
-            if self.sort_parameter_id is not None:
+            if data['sort_parameter_id'] is not None:
                 raise ValidationError('If not sorting by parameter no sort parameter id should be provided')
 
         return value

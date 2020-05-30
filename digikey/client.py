@@ -4,6 +4,7 @@ import re
 import typing as t
 from pathlib import Path
 
+import urllib
 import requests
 from fake_useragent import UserAgent
 
@@ -165,4 +166,4 @@ class DigikeyClient(object):
         params = models.ProductDetailGetRequest.camelize(models.ProductDetailGetRequest(data).to_primitive())
 
         del params['Part']
-        return self._request_get('/Search/v3/Products/{}'.format(partnr), data=params)
+        return self._request_get('/Search/v3/Products/{}'.format(urllib.parse.quote(partnr, safe='')), data=params)

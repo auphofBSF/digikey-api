@@ -236,7 +236,7 @@ class Part:
 
     @property
     def part_status(self) -> str:
-        return self._part.get('PartStatus', None)
+        return self._part.get('ProductStatus', None)
 
     @property
     def digikey_pn(self) -> str:
